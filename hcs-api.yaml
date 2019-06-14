@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0-oas3"
+  title: Health Check Service API
+paths:
+  /api/check:
+    post:
+      summary: Check instances health
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                check:
+                  $ref: '#/components/schemas/Check' 
+                instances:
+                  $ref: '#/components/schemas/InstancesList' 
+      responses:
+        '200':
+          description: The instances health status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                     $ref: '#/components/schemas/InstancesHealthoResponse'  
+              example:
+                response:
+                  status:
+                    code: 200
+                    message: OK
+                  items:
+                    - id: i-213232
+                      check:
+                        success: true
+                        output:
+                          code: 200
+                          text: OK
+                    - id: i-c22ef4
+                      check:
+                        success: false
+                        output:
+                          code: 400
+                          text: Bad request      
+                 
+components:
+  schemas:
+    InstancesList:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: the instance id
+          address:
+            type: string
+            description: private ip of the instance
+      example:
+        - id: i-12423r2few
+          address: 10.10.34.56
+        - id: i-23rtg3fwd3
+          address: 10.10.34.50
+    Check:  
+      type: object
+      properties:
+        id:
+          type: string
+          example: hc-test
+          description: the check identifier
+        protocol:
+          type: string
+          example: http
+          description: http / https
+        endpoint:
+          type: string
+          example: /checkAlive
+          description: the health endpoint to call for each instance
+        port:
+          type: integer
+          example: 8090
+          description: port for the health call
+        timeout:
+          type: integer
+          example: 10
+          description: time to wait (in seconds) for response from the instance
+    InstancesHealthResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: OK
+        items:
+          $ref: '#/components/schemas/InstanceHealthList' 
+    InstanceHealthList:
+      type: array
+      items: 
+        type: object
+        properties:
+          id:
+            type: string
+            example: 10.10.24.556
+            description: The instance id
+          check: 
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+                description: Determine if the service succeed to check the instance
+              output:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                    description: The status code that was retuend form the instance health call
+                  text:
+                    type: string
+                    example: OK
+                    description: The status message that was retuend form the instance health
