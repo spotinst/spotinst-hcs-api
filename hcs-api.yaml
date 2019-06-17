@@ -25,7 +25,7 @@ paths:
                 type: object
                 properties:
                   response:
-                     $ref: '#/components/schemas/InstancesHealthoResponse'  
+                     $ref: '#/components/schemas/InstancesHealthResponse'  
               example:
                 response:
                   status:
