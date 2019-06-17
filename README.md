@@ -1,6 +1,6 @@
 # spotinst-hcs-api
 
-API for Spotinst Health Check Service [https://api.spotinst.com/elastigroup-for-aws/services-integrations/spotinst-custom-health-check-service-hcs-2/]
+API for Spotinst [Health Check Service] (https://api.spotinst.com/elastigroup-for-aws/services-integrations/spotinst-custom-health-check-service-hcs-2/)
 
 
 ## UI
