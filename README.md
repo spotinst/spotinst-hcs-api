@@ -4,8 +4,8 @@ API for Spotinst Health Check Service
 
 ## UI
 
-User friendly UI with redoc: [https://spotinst.github.io/spotinst-hcs-openapi/][ui-url]
+User friendly UI with redoc: [https://spotinst.github.io/spotinst-hcs-api/][ui-url]
 
 
-[ui-url]: https://spotinst.github.io/spotinst-hcs-openapi/
+[ui-url]: https://spotinst.github.io/spotinst-hcs-api/
 
